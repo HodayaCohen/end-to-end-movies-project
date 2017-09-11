@@ -9,12 +9,32 @@
             $c = new DirectorController;
             return $c->CreateDirector($params);
         }
+        
 
         function Read($params) {
             $c = new DirectorController;
-            if (array_key_exists("id", $params)) {
-                $director = $c->getDirecotrById($params["id"]);
-                return json_encode($director, JSON_PRETTY_PRINT);
+            if (array_key_exists("method", $params)) {
+                $c = new DirectorController;
+                $director = $c->DeleteDirecotrById($params);
+                return $director;
+                
+            }
+            // else if (array_key_exists("update", $params)) {
+            //     $c = new DirectorController;
+            //     $director = $c->UpdateDirecotrById($params);
+            //     return $director;
+    
+            // }
+            // else if (array_key_exists("create", $params)) {
+            //     $c = new DirectorController;
+            //     return $c->CreateDirector($params);
+    
+            // }
+
+            else if (array_key_exists("id", $params)) {
+                $director = $c->getDirecotrById($params);
+                return $director;
+                // return json_encode($director, JSON_PRETTY_PRINT);
             }
             else {
                 return $c->getAllDirectors();

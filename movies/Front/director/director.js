@@ -1,12 +1,39 @@
 $(document).ready(function() {
+
     "use static";
 
     $('#submit').click(function() {
-        name = $('#name').val();
+        var value = $('#submit').val();
         var dirercotr = new DirectorModule();
-        dirercotr.createDirector(name);
+        switch (value) {
+            case 'create':
+                var name = $('#name').val();
+                dirercotr.createDirector(name);
+                break;
+            case 'get-all':
+                dirercotr.GetAllDirectors();
+                break;
+            case 'update':
+                var id = $('#id').val();
+                var name = $('#name').val();
+                dirercotr.UpdateDirectors(id, name);
+                break;
 
+            case 'delete':
+                var send_id = $('#id').val();
+                dirercotr.deleteDirector(send_id);
+                break;
+
+        }
     });
+
+    $('#id').change(function() {
+        var id = $('#id').val();
+        var dirercotr = new DirectorModule();
+        dirercotr.CheckIfIdExist(id);
+    });
+
+
 
 
     // director module
@@ -17,52 +44,49 @@ $(document).ready(function() {
             ctrl: DirectorApiMethod
         };
 
+        // director constructor
+        function Director(id, name) {
+            this.id = id;
+            this.name = name;
+        }
 
         return {
 
             createDirector: function(name) {
-                if (name)
+                if (name) {
                     data.name = name;
+                    data.create = 'create';
 
-                sendAJAX("POST", customerApiUrl, data, 'Director', 'created');
-                // $.ajax({
-                //     type: "POST",
-                //     url: "../../Back/api/api.php",
-                //     data: { arraydata: data },
-                //     success: function(data) {
-                //             callback(data, 'created');
-                //         }
+                    sendAJAX("POST", customerApiUrl, data, 'create');
 
-                // });
+                }
             },
-            getCustomer: function(id, callback) {
-                var data = {
-                    ctrl: customerApiMethod
-                };
-                if (id)
+
+            CheckIfIdExist: function(id) {
+                if (id) {
                     data.id = id;
-
-                jQuery.ajax({
-                    url: customerApiUrl,
-                    data: data,
-                    type: 'GET',
-                    success: function(result) {
-
-                        this.callback(result);
-                    }
-                });
+                    sendAJAX("GET", customerApiUrl, data, 'find_id');
+                }
             },
-            deleteCustomer: function() {
-                jQuery.ajax({
-                    url: '/api/api.php',
-                    data: {
-                        ctrl: customerApiMethod
-                    },
-                    type: 'DELETE',
-                    success: function(result) {
-                        console.log(result);
-                    }
-                });
+
+            GetAllDirectors: function() {
+                sendAJAX("GET", customerApiUrl, data, 'getall');
+
+            },
+
+            UpdateDirectors: function(id, name) {
+                data.id = id;
+                data.name = name;
+                data.update = 'update';
+                sendAJAX("PUT", customerApiUrl, data, 'update');
+            },
+
+            deleteDirector: function(id) {
+                if (id) {
+                    data.id = id;
+                    // data.method = 'DELETE';
+                    sendAJAX("DELETE", customerApiUrl, data, 'delete');
+                }
             }
         }
 

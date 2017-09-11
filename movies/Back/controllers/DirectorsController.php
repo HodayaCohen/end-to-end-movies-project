@@ -44,10 +44,16 @@
             
         }
 
+         function getDirecotrById($param){
+            $c = new DirectorModel($param);
+            $check =  $this->db->Check_if_id_exists($this->table_name, $param["id"]);
+            return $this->checkIsWasGood($check);
+            }
+
 // deletes a line from directors table
-        function DeleteDirecotrById($id) {
-            $c = new DirectorModel($id);
-            $deleted =  $this->db->DeleteRow($this->table_name, $id);
+        function DeleteDirecotrById($param) {
+            $c = new DirectorModel($param);
+            $deleted =  $this->db->DeleteRow($this->table_name, $param["id"]);
             return $this->checkIsWasGood($deleted);
     
         }
@@ -62,17 +68,6 @@
         }
 
 
-
-        function getDirectorById($id) {
-            // // CONNECT BL
-            // $array = [
-            //     "id" => $id,
-            //     "name" => MD5($id)
-            // ];
-           
-            // $c = new CustomerModel($array);
-            // return $c->jsonSerialize();
-        }
 
 
 

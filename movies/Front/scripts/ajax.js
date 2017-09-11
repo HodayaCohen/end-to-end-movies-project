@@ -1,14 +1,13 @@
-// $(document).ready(function() {
-//     "use static";
+    "use static";
 
-function sendAJAX(method, url, data, modelname, calltype) {
-    $.ajax({
-        type: method,
-        url: url,
-        data: { arraydata: data },
-        success: function(response_text) {
-            callback(modelname, response_text, method);
-        }
-    });
-}
-// });
+    function sendAJAX(method, url, data, calltype) {
+        $.ajax({
+            type: method,
+            url: url,
+            data: { activitiesArray: data },
+            success: function(response_text) {
+                callback(response_text, calltype);
+            }
+
+        });
+    }
