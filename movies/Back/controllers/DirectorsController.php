@@ -15,7 +15,7 @@
         }
         
 
-// creates a new line in director table
+        // Creates a new line in director table
         function CreateDirector($param) {
             $c = new DirectorModel($param);
             // $create = $this->db->CreateEntity($this->table_name, $c);
@@ -26,10 +26,10 @@
 
         $update = $this->db->create_new_row($this->table_name, $column, $values, $exicute);
         return $this->checkIsWasGood($update);
-                }
+        }
 
 
-// selects all from directors table and returns a object array
+        // Selects all from directors table and returns a object array
         function getAllDirectors() {
             $allDirectors = array();
             $getall = $this->db->SelectAllFromTable($this->table_name, $this->classneame);
@@ -38,19 +38,21 @@
                 $c = new DirectorModel($getall[$i]);
                 array_push($allDirectors, $c->jsonSerialize());
             }
-
-            return $allDirectors;
-            
-            
+            return $allDirectors;   
         }
 
+
+
+        // Checks if a id exists
          function getDirecotrById($param){
             $c = new DirectorModel($param);
             $check =  $this->db->Check_if_id_exists($this->table_name, $param["id"]);
             return $this->checkIsWasGood($check);
             }
 
-// deletes a line from directors table
+
+
+        // Deletes a line from directors table
         function DeleteDirecotrById($param) {
             $c = new DirectorModel($param);
             $deleted =  $this->db->DeleteRow($this->table_name, $param["id"]);
@@ -58,20 +60,16 @@
     
         }
 
-// updates a line in directos table
+
+
+        // Updates a line in directos table
         function UpdateDirecotrById($param) {
             $c = new DirectorModel($param);
             $updateValues= "name =  '".$c->getName()."'";
             $update =  $this->db->update_table($this->table_name, $c->getId(), $updateValues);
             return $this->checkIsWasGood($update);
-    
+
         }
-
-
-
-
-
-
 
 
 }

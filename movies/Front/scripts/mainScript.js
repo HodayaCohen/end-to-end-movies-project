@@ -1,7 +1,6 @@
-// $(document).ready(function() {
-
 // "use static";
 
+// Gets results from ajax and sends it to the right method
 function callback(response_text, calltype) {
     var respnse = JSON.parse(response_text);
     switch (calltype) {
@@ -22,12 +21,14 @@ function callback(response_text, calltype) {
             break;
 
         default:
-            alert('Nobody Wins!');
-
+            alert('Erorr!');
     }
-
 }
 
+
+
+
+// Gets data from AJAX callback and send's it to html
 function wasDone(response_text, calltype) {
     if (JSON.parse(response_text) == true) {
         $('#result').html("your request was " + calltype + " sucssesfuly.");
@@ -37,7 +38,19 @@ function wasDone(response_text, calltype) {
 
 }
 
-// function to create a table with all data
+// Handles the result of the check id test
+function idtest(response_text) {
+    var check = response_text;
+    if (check != true) {
+        $("#id_error").html("this id doesn't exsist!");
+        $("#hide").addClass("hide");
+    } else {
+        $("#id_error").html("");
+        $("#hide").removeClass("hide");
+    }
+}
+
+//  Create a table with all data
 function creaTable(response_text) {
     document.getElementById('result').innerHTML = "";
     var array = response_text;
@@ -66,16 +79,3 @@ function creaTable(response_text) {
     }
 
 }
-
-function idtest(response_text) {
-    var check = response_text;
-    if (check != true) {
-        $("#id_error").html("this id doesn't exsist!");
-        $("#hide").addClass("hide");
-    } else {
-        $("#id_error").html("");
-        $("#hide").removeClass("hide");
-    }
-}
-
-// });

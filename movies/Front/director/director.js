@@ -1,6 +1,7 @@
+"use static";
+
 $(document).ready(function() {
 
-    "use static";
 
     $('#submit').click(function() {
         var value = $('#submit').val();
@@ -44,12 +45,6 @@ $(document).ready(function() {
             ctrl: DirectorApiMethod
         };
 
-        // director constructor
-        function Director(id, name) {
-            this.id = id;
-            this.name = name;
-        }
-
         return {
 
             createDirector: function(name) {
@@ -77,14 +72,12 @@ $(document).ready(function() {
             UpdateDirectors: function(id, name) {
                 data.id = id;
                 data.name = name;
-                data.update = 'update';
                 sendAJAX("PUT", customerApiUrl, data, 'update');
             },
 
             deleteDirector: function(id) {
                 if (id) {
                     data.id = id;
-                    // data.method = 'DELETE';
                     sendAJAX("DELETE", customerApiUrl, data, 'delete');
                 }
             }
