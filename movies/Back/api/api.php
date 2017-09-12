@@ -3,6 +3,12 @@
 
     $method = $_SERVER['REQUEST_METHOD']; // verb
     $params = $_REQUEST['activitiesArray'];
+
+    if($_SERVER['REQUEST_METHOD'] == 'PUT') {
+        parse_str(file_get_contents("php://input"),$post_vars);
+        $params = $post_vars['activitiesArray']; // you can access query parameters like this
+    $params =$params;
+    }
     
     switch ($params['ctrl']) {
         case 'Director':
@@ -16,5 +22,6 @@
         echo $capi->gateway($method, $params);
         break;
     }
+
 
 ?>

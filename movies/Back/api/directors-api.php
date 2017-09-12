@@ -1,7 +1,7 @@
 <?php
     require_once 'abstract-api.php';
     require_once 'api.php';
-    require_once '../controllers/DirectorsController.php';
+   require_once '../controllers/DirectorsController.php';
 
     class DirectorApi extends Api{
 
