@@ -1,71 +1,47 @@
- $(document).ready(function() {
+var validate = {
+    // clears the error when user types a new value
+    emptyError: $("input").change(function() {
+        $("#result").html("");
+    }),
 
-     validate = function() {
+    NotEmpty: function(inputtxt) {
+        if (inputtxt == "" || inputtxt == "undefined") {
+            return false;
+        }
+    },
 
-         // clears the error when user types a new value
+    // Validation for name input
+    ValidateName: function(name) {
+        var pattern = /[0-9a-zA-Zא-ת\s!?=+-.,']+$/m;
+        if (this.NotEmpty(name) == false) {
+            alert("You must fill all input fields!");
 
-     }
-     $("input").change(function() {
-         $("#result").html("");
+        } else if (!pattern.test(name)) {
+            alert("The field contains invalid characters, only letters or numbers must be entered!");
 
-     });
+        } else {
+            return true;
+        }
+    },
 
-     return {
-         // Validation for name input
+    ValidateId: function(id) {
+        if (this.NotEmpty(id) == false) {
+            alert("You must fill all input fields!");
+        } else if (isNaN(id)) {
+            alert("the id can contian only numbers!");
+        } else {
+            return true;
+        }
+    },
+    isSelectes: function(selectid) {
+        var selectedid = document.getElementById(selectid);
+        var selectedValue = selectedid.options[selectedid.selectedIndex].value;
+        if (selectedValue == "Select a director") {
+            alert("Please select a director");
+        } else {
+            return true;
 
-         ValidateName: function(inputtxt) {
-             var pattern = /[0-9a-zA-Zא-ת\s!?=+-.,']+$/m;
-             if (NotEmpty(inputtxt) == false) {
-                 $("#result").html("Enter a name");
-                 $("#name").css("border", "solid 1px red");
-                 $("#result").css({ "color": "red", "fontFamily": "Arial" });
-                 return false;
+        }
+    }
 
-             } else if (!pattern.test(inputtxt)) {
-                 $("#result").html("Use only A-Z or Digits");
-                 $("#name").css("border", "solid 1px red");
-                 $("#result").css({ "color": "red", "fontFamily": "Arial" });
-                 return false;
-
-             } else {
-                 return true;
-             }
-         },
-
-         // Check if input isn't empty
-         NotEmpty: function(inputtxt) {
-             if (inputtxt == "" || inputtxt == "undefined") {
-                 return false;
-             }
-         }
-     };
-
-
-
-
-
-
-     if (NotEmpty(inputtxt) == false) {
-         $("#result").html("Enter a Phone");
-         $("#phone").css("border", "solid 1px red");
-         $("#result").css({ "color": "red", "fontFamily": "Arial" });
-         return false;
-
-     } else if ((chell.test(inputtxt)) || (Phone.test(inputtxt))) {
-         return true;
-
-     } else {
-         $("#result").html("Phone must Contain 9 or 10 digits");
-         $("#phone").css("border", "solid 1px red");
-         $("#result").css({ "color": "red", "fontFamily": "Arial" });
-         return false;
-
-     }
-
- }
-
-
-
-
-
- });
+}

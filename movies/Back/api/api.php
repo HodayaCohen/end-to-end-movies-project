@@ -1,5 +1,7 @@
 <?php
     require_once 'directors-api.php';
+    require_once 'movies-api.php';
+    
 
     $method = $_SERVER['REQUEST_METHOD']; 
 
@@ -21,8 +23,10 @@
             break;
 
             case 'Movie':
-            $capi = new MovieApi();
-            echo $capi->gateway($method, $params);
+            $capi = new MoviesApi();
+            $result = $capi->gateway($method, $params);
+            echo json_encode($result);
+            
             break;
     }
 

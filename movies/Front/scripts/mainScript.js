@@ -19,7 +19,9 @@ function callback(response_text, calltype) {
         case 'update':
             wasDone(respnse, 'updated');
             break;
-
+        case 'selectlist':
+            insertlist(respnse);
+            break;
         default:
             alert('Erorr!');
     }
@@ -37,6 +39,11 @@ function wasDone(response_text, calltype) {
     }
 
 }
+
+function insertlist(response_text) {
+    $("#select_id").html(response_text);
+}
+
 
 // Handles the result of the check id test
 function idtest(response_text) {

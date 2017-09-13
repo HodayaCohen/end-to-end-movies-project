@@ -2,38 +2,58 @@
 
 $(document).ready(function() {
 
-
     $('#submit').click(function() {
         var value = $('#submit').val();
         var dirercotr = new DirectorModule();
+        let name;
+        let valResult;
+        let id;
+        let valid;
+
         switch (value) {
             case 'create':
-                var name = $('#name').val();
-                dirercotr.createDirector(name);
+                name = $('#name').val();
+                valResult = validate.ValidateName(name);
+                if (valResult == true) {
+                    dirercotr.createDirector(name);
+                }
                 break;
+
             case 'get-all':
                 dirercotr.GetAllDirectors();
                 break;
+
             case 'update':
-                var id = $('#id').val();
-                var name = $('#name').val();
-                dirercotr.UpdateDirectors(id, name);
+                id = $('#id').val();
+                valid = validate.ValidateId(id);
+                name = $('#name').val();
+                valResult = validate.ValidateName(name);
+                if (valResult == true && valid == true) {
+                    dirercotr.UpdateDirectors(id, name);
+                }
                 break;
 
             case 'delete':
-                var send_id = $('#id').val();
-                dirercotr.deleteDirector(send_id);
-                break;
+                id = $('#id').val();
+                valid = validate.ValidateId(id);
+                if (valid == true) {
+                    dirercotr.deleteDirector(id);
+                    break;
+                }
 
         }
+
     });
 
     $('#id').change(function() {
-        var id = $('#id').val();
-        var dirercotr = new DirectorModule();
-        dirercotr.CheckIfIdExist(id);
-    });
+        let id = $('#id').val();
+        let valid = validate.ValidateId(id);
+        if (valid == true) {
+            var dirercotr = new DirectorModule();
+            dirercotr.CheckIfIdExist(id);
+        }
 
+    });
 
 
 
@@ -51,7 +71,6 @@ $(document).ready(function() {
                 if (name) {
                     data.name = name;
                     data.create = 'create';
-
                     sendAJAX("POST", customerApiUrl, data, 'create');
 
                 }

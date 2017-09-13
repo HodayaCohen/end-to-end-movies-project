@@ -1,30 +1,46 @@
 <?php
     require_once 'abstract-api.php';
-    require_once '../controllers/CustomerController.php';
+    require_once 'api.php';
+    require_once '../controllers/MoviesController.php';
 
-    class CustomerApi extends Api{
+    class MoviesApi extends Api{
 
+        // Create a new movie
         function Create($params) {
-            $c = new CustomerController;
-            $c->CreateCustomer($param);
+            $c = new MoviesController;
+            return $c->CreateMovie($params);
         }
+        
 
+         // Get all movies or check if a id exists
         function Read($params) {
-            $c = new CustomerController;
-
-            if (array_key_exists("id", $params)) {
-                $customer = $c->getCustomerById($params["id"]);
-                return json_encode($customer, JSON_PRETTY_PRINT);
+            $c = new MoviesController;
+        
+             if (array_key_exists("id", $params)) {
+                $movies = $c->getMoviesById($params);
+                return $movies;
             }
             else {
-                return $c->getAllCustomers();
+                return $c->getAllMovies();
             }
-        }
-         function Update($params) {
-             // TODO
-         }
+        } 
+
+
+        // Update a movie
+        function Update($params) {
+            $c = new MoviesController;
+            $movies = $c->UpdateMoviesById($params);
+            return $movies;
+            }
+
+            
+        //  Delete 1 movie   
          function Delete($params) {
-            // TODO
-         }
+            $c = new MoviesController;
+            $movies = $c->DeleteMoviesById($params);
+            return $movies;
+            
+        }
+
     }
 ?>

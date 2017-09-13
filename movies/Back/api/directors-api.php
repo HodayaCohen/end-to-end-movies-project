@@ -15,11 +15,17 @@
          // Get all directors or check if a id exists
         function Read($params) {
             $c = new DirectorController;
+
+             if (array_key_exists("select", $params)) {
+                $director = $c->ReturnSelect();
+                return $director;
+            }
         
-             if (array_key_exists("id", $params)) {
+            if (array_key_exists("id", $params)) {
                 $director = $c->getDirecotrById($params);
                 return $director;
             }
+
             else {
                 return $c->getAllDirectors();
             }

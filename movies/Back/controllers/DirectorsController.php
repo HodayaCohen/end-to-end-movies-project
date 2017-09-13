@@ -18,15 +18,30 @@
         // Creates a new line in director table
         function CreateDirector($param) {
             $c = new DirectorModel($param);
-            // $create = $this->db->CreateEntity($this->table_name, $c);
+            if($c->getName() != 'null'){
             $column="name";
             $values=":name";
             $exicute = array(
                     "name"=> $c->getName());
-
-        $update = $this->db->create_new_row($this->table_name, $column, $values, $exicute);
-        return $this->checkIsWasGood($update);
+            $update = $this->db->create_new_row($this->table_name, $column, $values, $exicute);
+            return $this->checkIsWasGood($update);
+            }else{
+                return $c->getName();
+            }
         }
+
+
+        // Updates a line in directos table
+        function ReturnSelect() {
+            $List =  $this->db->SelectAllFromTable($this->table_name, $this->classneame);
+            $DirectorSelect="<option value='Select a director'>Select a director</option>";
+                for ($i = 0; $i < count($List); $i++) {
+                $DirectorSelect .= "<option value=" . $List[$i]["id"] . ">" . $List[$i]["name"] . "</option>";
+                }
+        
+            return $DirectorSelect; 
+        }
+    
 
 
         // Selects all from directors table and returns a object array
@@ -46,17 +61,28 @@
         // Checks if a id exists
          function getDirecotrById($param){
             $c = new DirectorModel($param);
-            $check =  $this->db->Check_if_id_exists($this->table_name, $param["id"]);
-            return $this->checkIsWasGood($check);
+                if($c->getId() != 'null' || $c->getId() != 'NaN'){
+                $check =  $this->db->Check_if_id_exists($this->table_name, $c->getId());
+                return $this->checkIsWasGood($check);
+                }else{
+                    return $c->getId();
+                }
+
             }
+
 
 
 
         // Deletes a line from directors table
         function DeleteDirecotrById($param) {
             $c = new DirectorModel($param);
-            $deleted =  $this->db->DeleteRow($this->table_name, $param["id"]);
-            return $this->checkIsWasGood($deleted);
+                if($c->getId() != 'null' || $c->getId() != 'NaN'){
+                $deleted =  $this->db->DeleteRow($this->table_name, $c->getId());
+                return $this->checkIsWasGood($deleted);
+                }else{
+                    return $c->getId();
+                }
+
     
         }
 
@@ -65,11 +91,20 @@
         // Updates a line in directos table
         function UpdateDirecotrById($param) {
             $c = new DirectorModel($param);
-            $updateValues= "name =  '".$c->getName()."'";
-            $update =  $this->db->update_table($this->table_name, $c->getId(), $updateValues);
-            return $this->checkIsWasGood($update);
+                if($c->getId() != 'null' || $c->getId() != 'NaN' || $c->getName() != 'null' ){
+                    $updateValues= "name =  '".$c->getName()."'";
+                $update =  $this->db->update_table($this->table_name, $c->getId(), $updateValues);
+                return $this->checkIsWasGood($update);
+                }else{
+                    return "id is " . $c->getId() . "name is " .  $c->getName();
+                }
 
         }
+
+
+        
+
+
 
 
 }
