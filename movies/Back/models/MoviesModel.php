@@ -8,6 +8,8 @@
         private $name;
         private $d_id;
         private $validation;
+        private $Director_Name;
+
 
         function __construct($params) {
             $this->validation = new validation;
@@ -16,6 +18,7 @@
             if (array_key_exists("id", $params)) $this->id = $params["id"];  
             if (array_key_exists("name", $params)) $this->name = $params["name"];
             if (array_key_exists("d_id", $params)) $this->d_id = $params["d_id"];
+            if (array_key_exists("Director_Name", $params)) $this->Director_Name = $params["Director_Name"];
             
 
         
@@ -59,10 +62,9 @@
 
         public function jsonSerialize() {
             return [
-                "id" => $this->id,
-                "name" => $this->name,
-                "d_id" => $this->d_id
-                
+                "Movie ID" => $this->id,
+                "Movie Name" => $this->name,
+                "Director Name" => $this->Director_Name
             ];
         }
     }

@@ -43,8 +43,8 @@
             
         public function jsonSerialize() {
             return [
-                "id" => $this->id,
-                "name" => $this->name
+                "Director id" => $this->id,
+                "Director name" => $this->name
             ];
         }
     }

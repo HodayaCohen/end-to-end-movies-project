@@ -65,6 +65,21 @@ function insertSQL($query, $exicute) {
     return true;
 }
 
+function deleteSQL($query) {
+    $DB = $this->getDB();
+    $table = $DB->prepare($query);
+    $table->execute();
+
+    return true;
+}
+
+function innerJoion($query) {
+    $DB = $this->getDB();
+    $table = $DB->prepare($query);
+    $table->execute();
+    
+    return $mytable = $table->fetchAll();;
+}
 
 
 

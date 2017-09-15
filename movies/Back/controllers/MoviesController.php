@@ -31,21 +31,24 @@
             }
         }
 
-
+            
 
         // Selects all from directors table and returns a object array
         function getAllMovies() {
             $allMovies = array();
-            $getall = $this->db->SelectAllFromTable($this->table_name, $this->classneame);
-            
+
+            $selected_tables = "movies.id, movies.name ,directors.name as Director_Name";
+            $table2 = 'directors';
+            $Column_equal_to = 'movies.d_id = directors.id';
+
+            $getall = $this->db->innerJoin($selected_tables, $this->table_name, $table2, $Column_equal_to);
             for($i=0; $i<count($getall); $i++) {
                 $c = new MoviesModel($getall[$i]);
                 array_push($allMovies, $c->jsonSerialize());
             }
             return $allMovies;   
         }
-
-
+        
 
         // Checks if a id exists
          function getMoviesById($param){

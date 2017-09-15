@@ -43,21 +43,16 @@ private $DB;
 }
 
  function DeleteRow($table_name, $id) {
-    $getdb = $this->DB->getDB();
-    
-
-        $delete =  $getdb->prepare("DELETE FROM ".$table_name." WHERE id =". $id);
-        $delete->execute();
+        $delete = $this->DB->deleteSQL("DELETE FROM ".$table_name." WHERE id =". $id);
         return $delete;
 
 }
 
 
-function innerJoin($table_name, $column, $join1, $join2) {
-    $innerJion = $this->DB->prepare("SELECT * FROM ".$table_name." INNER JOIN  ".$column." ON  ".$join1." = ".$join2);
-    $innerJion->execute();
+function innerJoin($selected_tables, $table1, $table2, $Column_equal_to) {
+    $innerJion = $this->DB->innerJoion("SELECT ". $selected_tables." FROM ". $table1 ." INNER JOIN " .$table2." ON ". $Column_equal_to);
     return $innerJion;
 
 }
-
 }
+    
