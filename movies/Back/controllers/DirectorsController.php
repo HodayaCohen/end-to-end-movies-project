@@ -76,11 +76,11 @@
         // Deletes a line from directors table
         function DeleteDirecotrById($param) {
             $c = new DirectorModel($param);
-                if($c->getId() != 'null' || $c->getId() != 'NaN'){
+                if($c->getId() != false){
                 $deleted =  $this->db->DeleteRow($this->table_name, $c->getId());
                 return $this->checkIsWasGood($deleted);
                 }else{
-                    return $c->getId();
+                    return "error";
                 }
 
     
@@ -91,13 +91,15 @@
         // Updates a line in directos table
         function UpdateDirecotrById($param) {
             $c = new DirectorModel($param);
-                if($c->getId() != 'null' || $c->getId() != 'NaN' || $c->getName() != 'null' ){
+                if($c->getId() != false || $c->getId() != false){
+                    if($c->getName() != false) {
                     $updateValues= "name =  '".$c->getName()."'";
-                $update =  $this->db->update_table($this->table_name, $c->getId(), $updateValues);
-                return $this->checkIsWasGood($update);
+                    $update =  $this->db->update_table($this->table_name, $c->getId(), $updateValues);
+                    return $this->checkIsWasGood($update);
                 }else{
-                    return "id is " . $c->getId() . "name is " .  $c->getName();
+                    return "error";
                 }
+            }
 
         }
 

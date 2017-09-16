@@ -21,8 +21,10 @@
         public function getName(){
             $this->validation = new validation;
             if ($this->validation->NotNull($this->name) == false){
-            return 'null';}
-            else{
+            return false;
+             }
+            else
+            {
             return $this->name;
             }
         }
@@ -31,10 +33,10 @@
         public function getId(){
             $this->validation = new validation;            
             if ($this->validation->NotNull($this->id) == false) {
-                return 'null';
+                return false;
             }
             elseif ($this->validation->isNumber($this->id) == false) {
-                return 'NaN';
+                return false;
             }
             else {
             return $this->id;

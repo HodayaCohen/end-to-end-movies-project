@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2017 at 04:02 PM
+-- Generation Time: Sep 17, 2017 at 01:56 AM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -38,35 +38,25 @@ CREATE TABLE `directors` (
 --
 
 INSERT INTO `directors` (`id`, `name`) VALUES
-(3, 'i was updated'),
-(4, 'וגם אני עודכנתי'),
-(5, 'שם חדש'),
-(6, 'שם חדש'),
-(7, 'hgh'),
+(3, 'chani'),
+(7, 'earson'),
 (8, 'test4'),
-(9, 'test5'),
-(10, 'test5'),
-(11, 'test6'),
-(12, 'test7'),
-(13, 'test7'),
-(14, 'test8'),
-(15, 'now?'),
-(16, 'now??'),
-(17, 'now??ew'),
-(18, 'ffd'),
-(19, 'test 100'),
-(20, 'test 101'),
-(21, 'ככככ'),
-(22, 'bvzvc'),
-(23, 'gfdgfd'),
-(24, 'trtrtr'),
-(25, 'fdssfd'),
-(26, 'n,,hldafs'),
-(27, 'cca'),
-(28, 'cca'),
-(29, 'fdafsdsd'),
-(30, 'fdafsdsd'),
-(31, 'fdafdasdssdfsdsfd');
+(46, 'ccc'),
+(47, 'Noa'),
+(48, 'Noa'),
+(49, 'MOoo'),
+(50, 'MOoo'),
+(51, 'Chani'),
+(52, 'chanii'),
+(53, 'chanii'),
+(54, 'chanii'),
+(58, 'Lolo'),
+(59, 'Joel'),
+(65, 'well done'),
+(66, 'ציק צאק'),
+(67, 'good night'),
+(68, 'yellow שקית'),
+(70, 'apple');
 
 -- --------------------------------------------------------
 
@@ -79,6 +69,16 @@ CREATE TABLE `movies` (
   `name` varchar(50) NOT NULL,
   `d_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `movies`
+--
+
+INSERT INTO `movies` (`id`, `name`, `d_id`) VALUES
+(1, 'אטלס', 8),
+(2, 'Danger', 8),
+(3, 'Blue Mug', 59),
+(4, 'הטלפון השחור', 50);
 
 --
 -- Indexes for dumped tables
@@ -105,12 +105,12 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

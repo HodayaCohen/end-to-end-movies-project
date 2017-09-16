@@ -17,6 +17,7 @@ function callback(response_text, calltype) {
             wasDone(respnse, 'deleted');
             break;
         case 'update':
+
             wasDone(respnse, 'updated');
             break;
         case 'selectlist':
@@ -32,7 +33,7 @@ function callback(response_text, calltype) {
 
 // Gets data from AJAX callback and send's it to html
 function wasDone(response_text, calltype) {
-    if (JSON.parse(response_text) == true) {
+    if (response_text == true) {
         $('#result').html("your request was " + calltype + " sucssesfuly.");
     } else {
         $('#result').html("error");
