@@ -5,7 +5,7 @@
 
     $method = $_SERVER['REQUEST_METHOD']; 
 
-    if($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'DELETE') {
+    if($method == 'PUT' || $method == 'DELETE') {
         parse_str(file_get_contents("php://input"),$post_vars);
         $params = $post_vars['activitiesArray']; 
     }
