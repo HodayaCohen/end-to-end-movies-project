@@ -17,10 +17,7 @@ var Movie_controller = function() {
             send.newMovie(data);
             if (send.getname() != false && send.getd_id() != false) {
                 sendAJAX("POST", MoviesApiUrl, data, 'create');
-            } else {
-                alert("input error");
             }
-
 
 
         },
@@ -31,10 +28,7 @@ var Movie_controller = function() {
             send.newMovie(data);
             if (send.getid() != false) {
                 sendAJAX("GET", MoviesApiUrl, data, 'find_id');
-            } else {
-                alert("input error");
             }
-
 
         },
 
@@ -51,8 +45,6 @@ var Movie_controller = function() {
             send.newMovie(data);
             if (send.getid() != false && send.getname() != false && send.getd_id() != false) {
                 sendAJAX("PUT", MoviesApiUrl, data, 'update');
-            } else {
-                alert("input error");
             }
 
         },
@@ -63,10 +55,7 @@ var Movie_controller = function() {
             send.newMovie(data);
             if (send.getid() != false) {
                 sendAJAX("DELETE", MoviesApiUrl, data, 'delete');
-            } else {
-                alert("input error");
             }
-
 
         }
     }

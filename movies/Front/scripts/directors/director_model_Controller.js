@@ -17,8 +17,7 @@
                 send.newDirector(data);
                 if (send.getname() != false) {
                     sendAJAX("POST", customerApiUrl, data, 'create');
-                } else {
-                    alert("input error");
+
                 }
             },
 
@@ -28,15 +27,12 @@
                 send.newDirector(data);
                 if (send.getid() != false) {
                     sendAJAX("GET", customerApiUrl, data, 'find_id');
-                } else {
-                    alert("input error");
                 }
 
             },
 
             GetAllDirectors: function() {
                 sendAJAX("GET", customerApiUrl, data, 'getall');
-
             },
 
             UpdateDirectors: function(id, name) {
@@ -46,8 +42,6 @@
                 send.newDirector(data);
                 if (send.getid() != false && send.getname() != false) {
                     sendAJAX("PUT", customerApiUrl, data, 'update');
-                } else {
-                    alert("input error");
                 }
 
             },
@@ -58,9 +52,9 @@
                 send.newDirector(data);
                 if (send.getid() != false) {
                     sendAJAX("DELETE", customerApiUrl, data, 'delete');
-                } else {
-                    alert("input error");
                 }
+
+
 
             }
         }
